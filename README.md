@@ -15,7 +15,7 @@ features:
 
 Examples:
 
-<h3>Only user can add comments and add to cart</h3>
+
 ![WhatsApp Image 2022-11-23 at 11 02 42](https://user-images.githubusercontent.com/108794115/203512269-b57fe22b-9d32-4103-87d6-3d54cd885d37.jpeg)
 
 
