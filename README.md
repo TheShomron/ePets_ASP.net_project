@@ -13,7 +13,7 @@ features:
 * Adding an animal with validation and an IFormFile.
 * A donation cart showing the purchase details and the option to make a purchase.
 
-<h3>Examples:</h3>
+<h1>Examples:</h1>
 
 Only user can add comments and add to cart
 ![WhatsApp Image 2022-11-23 at 11 02 42](https://user-images.githubusercontent.com/108794115/203512269-b57fe22b-9d32-4103-87d6-3d54cd885d37.jpeg)
