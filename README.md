@@ -13,21 +13,21 @@ features:
 * Adding an animal with validation and an IFormFile.
 * A donation cart showing the purchase details and the option to make a purchase.
 
-Examples:
+<h3>Examples:</h3>
 
-
+Only user can add comments and add to cart
 ![WhatsApp Image 2022-11-23 at 11 02 42](https://user-images.githubusercontent.com/108794115/203512269-b57fe22b-9d32-4103-87d6-3d54cd885d37.jpeg)
 
 
 <br>
 
-<h3>An administrator can see all users on the site including the orders made so far</h3>
+An administrator can see all users on the site including the orders made so far
 ![WhatsApp Image 2022-11-23 at 11 01 25](https://user-images.githubusercontent.com/108794115/203512306-0696e27c-35f8-4658-8e9d-070d55a906a6.jpeg)
 
 
 <br>
 
-<h3>Shopping cart summary and making the purchase</h3>
+Shopping cart summary and making the purchase
 ![WhatsApp Image 2022-11-23 at 11 05 05](https://user-images.githubusercontent.com/108794115/203512214-89a54d3a-c7b3-471c-b10a-dec1333562ac.jpeg)
 
 
