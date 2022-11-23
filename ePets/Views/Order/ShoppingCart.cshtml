@@ -1,0 +1,67 @@
+﻿@model ShoppingCartVM
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h1>Shopping Cart: </h1>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Animal</th>
+                    <th>Price</th>
+                    <th>SubTotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.ShoppingCart.CartItems)
+                {
+                    <tr>
+                        <td>@item.Amount</td>
+                        <td>@item.Animal.Name</td>
+                        <td>@item.Animal.Price.ToString("C")</td>
+                        <td>@(Math.Round(item.Amount*item.Animal.Price,2).ToString("C"))</td>
+                        <td>
+                            <a asp-controller="Order" asp-action="RemoveFromCart"
+                           asp-route-id=@item.Animal.AnimalId>
+                                <i class="bi bi-cart-dash red-color" style=" color: rgb(165, 42, 42)"></i>
+                            </a>
+                            <a asp-controller="Order" asp-action="AddToCart"
+                           asp-route-id=@item.Animal.AnimalId>
+                                <i class="bi bi-cart-plus green-color" style=" color: rgb(0, 128, 55)"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td>
+                        @Model.TotalCartPrice.ToString("C")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center">
+            <div class=" btn-group">
+                <a class="btn btn-outline-success" asp-action="CompleteOrder" >
+                    Complete Donation
+                </a>
+                <a class="btn btn-outline-dark"  asp-action="Index" asp-controller="Catalog">
+                    Add More Animals
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

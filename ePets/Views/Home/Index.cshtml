@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ePets.Models.Animal>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<h1 style="text-decoration: underline;">Most Commeted Animals</h1>
+
+
+
+
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            @foreach (var animal in Model)
+            {
+                <th>
+                    <img src="@Url.Content(@animal.ImageUrl)" alt="Image" class="img-fluid ; col-3" style="height:500px;width:500px;" />
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var animal in Model)
+            {
+                <td>
+                    <div><span style="text-decoration: underline; font-weight:bold">Name:</span> @animal.Name</div><br>
+                    <div><span style="text-decoration: underline;  font-weight:bold">Comments:</span> @animal.Comments.Count() On Animal</div><br>
+                    <div>
+
+
+                        <button class="button-47" role="button">
+                            @Html.ActionLink("More details!", "ShowAnimal", "Catalog",new{id = @animal.AnimalId} , new {@style="color: black"})
+                        </button>
+                    </div>
+                </td>
+            }
+        </tr>
+    </tbody>
+
+
+</table>

@@ -1,0 +1,52 @@
+﻿@using ePets.Data.ViewComponents;
+@model RegisterVM;
+
+@{
+    ViewData["Title"]= "Register";
+}
+
+
+
+
+<div class="AnimalBox">
+    <h1>Sign Up For A New Account:</h1>
+
+    @if(TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        <span><b>Sorry!</b>- @TempData["Error"] </span>
+    </div>
+}
+
+    <div>
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div>
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+            <div>
+                <label asp-for="EmailAdress"></label>
+                <input asp-for="EmailAdress" />
+                <span asp-validation-for="EmailAdress"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+
+            <div>
+                <input class="btn btn-outline-successs" type="submit" value="Sign Up">
+                <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Catalog"> Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

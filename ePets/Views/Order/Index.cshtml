@@ -1,0 +1,56 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "All Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List Of All Yours Orders: </h1>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>User</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle"> @order.OrderId</td>
+                        <td class="align-middle">
+                            
+                            <ul class="" style="list-style-type:none">
+                                @foreach (var item in order.OrderItemsList)
+                                {
+                                    <li>
+                                        <div class="alert alert-success" role="alert">
+                                            <span class="badge badge-success">@item.Amount</span>[@item.Price.ToString("C")]-@item.Animal.Name
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            @order.OrderItemsList.Select(n=>n.Animal.Price * n.Amount).Sum().ToString("C")
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle"> @order.User.FullName</td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

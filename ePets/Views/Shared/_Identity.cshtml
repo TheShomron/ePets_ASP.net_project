@@ -1,0 +1,49 @@
+﻿@inject UserManager<ApplicationUser> UserManager;
+
+
+<div >
+    @if (!User.Identity.IsAuthenticated)
+    {
+    <div style="display:inline-block">
+        <a class="btn btn-outline-success" asp-controller="Administrator" asp-action="Login">
+            <i class="bi bi-box-arrow-in-right"></i> Log In
+        </a>
+        <a class="btn btn-outline-info" asp-controller="Administrator" asp-action="Register">
+            <i class="bi bi-person-badge"></i>Register
+        </a>
+    </div>
+    }
+    else
+    {
+    <div style="display:inline-flex">
+        @await Component.InvokeAsync("CartSummary")
+
+        <div class="dropdown"  style="gap:5px">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-badge"></i>Hello @UserManager.GetUserName(User)
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" role="button" asp-controller="Order" asp-action="Index">
+                    <i class="bi bi-list"></i> Orders
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                <a class="dropdown-item" role="button" asp-controller="Administrator" asp-action="Users">
+                    <i class="bi bi-people"></i> Users
+                </a>
+                }
+            </div>
+        </div>
+
+        <div>
+            <form asp-controller="Administrator" asp-action="Logout">
+                <button class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-in-right"></i> Logout
+                </button>
+            </form>
+        </div>
+    </div>
+    }
+</div>
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ePets.Models.Animal>
+
+@{
+    ViewData["Title"] = "Catalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var PhotoPath = "~/Images/Animals";
+}
+
+<h1>Catalog</h1>
+<div @*class="align-content-center"*@>
+
+    <div class="select-div" style="position:relative; float:left">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @ViewBag.CurrentCategory.TypeName
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <a class="dropdown-item" role="button" asp-controller="Catalog" asp-action="Index" asp-route-AnimalId="@item.AnimalTypeId">
+                        @item.TypeName
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+  @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+         <div class="text-white"> <a asp-action="CreateAnimal" asp-controller="Catalog" style="position:initial; float:right" class="btn btn-outline-light"> Add New Animal </a></div> 
+ 
+    }
+<div>
+    <div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr style="width:-webkit-fit-content">
+                    <th>Picture:</th>
+                    <th>@Html.DisplayNameFor(a => a.Name)</th>
+                    <th>@Html.DisplayNameFor(a => a.Age)</th>
+                    <th>@Html.DisplayNameFor(a => a.Price)</th>
+                    <th>@Html.DisplayNameFor(a => a.Bio)</th>
+                    <th>Actions:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var animal in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content(@animal.ImageUrl)" alt="Image" style="height:175px;width:535px;" />
+                        </td>
+                        <td>@animal.Name</td>
+                        <td>@animal.Age</td>
+                        <td class=col-1>@animal.Price.ToString("c")</td>
+                        <td>@animal.Bio</td>
+                        <td>
+                            <a class="btn btn-outline-dark" role="button" asp-controller="Catalog" asp-action="ShowAnimal"
+                           asp-route-id="@animal.AnimalId">
+                                Show details
+                            </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="btn btn-outline-dark" role="button" asp-controller="Order" asp-action="AddToCart" asp-route-id="@animal.AnimalId">
+                                    Add To Cart
+                                </a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-outline-dark" role="button" asp-controller="Catalog" asp-action="Delete"
+                           asp-route-id="@animal.AnimalId">
+                                        Delete Animal
+                                    </a>
+                                    <a class="btn btn-outline-dark" role="button" asp-controller="Catalog" asp-action="Edit" asp-route-id="@animal.AnimalId">
+                                        Edit Animal
+                                    </a>
+                                }
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+   
+  
+</div>
+
+
+
+
+
+
